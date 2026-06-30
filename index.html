@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prüfungsvorbereitung · Trainingsplan-Umsetzung</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --card: #1a1d27;
+      --card2: #22263a;
+      --accent: #6c63ff;
+      --accent2: #a78bfa;
+      --green: #22c55e;
+      --red: #ef4444;
+      --yellow: #f59e0b;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3148;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px 16px 60px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.875rem;
+      margin-bottom: 28px;
+    }
+
+    /* --- Filter chips --- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .chip {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all .15s;
+      user-select: none;
+    }
+
+    .chip:hover { border-color: var(--accent); color: var(--accent2); }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+    /* --- Start screen / score --- */
+    .start-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      max-width: 640px;
+      margin: 0 auto 24px;
+      text-align: center;
+    }
+
+    .start-card h2 { font-size: 1.25rem; margin-bottom: 8px; }
+    .start-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; line-height: 1.6; }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: 10px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn.secondary { background: var(--card2); border: 1px solid var(--border); color: var(--text); margin-left: 10px; }
+
+    /* --- Progress bar --- */
+    .progress-wrap {
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .progress-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 4px;
+      transition: width .3s;
+    }
+
+    /* --- Question card --- */
+    .question-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+
+    .q-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .q-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: var(--card2);
+      color: var(--accent2);
+      border: 1px solid var(--border);
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    /* --- Answers --- */
+    .answers { display: flex; flex-direction: column; gap: 10px; }
+
+    .answer-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--card2);
+      color: var(--text);
+      font-size: 0.9rem;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .15s, background .15s;
+      line-height: 1.45;
+    }
+
+    .answer-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      background: #1e2035;
+    }
+
+    .answer-btn:disabled { cursor: default; }
+
+    .answer-btn.correct {
+      border-color: var(--green);
+      background: rgba(34,197,94,.12);
+      color: #fff;
+    }
+
+    .answer-btn.wrong {
+      border-color: var(--red);
+      background: rgba(239,68,68,.1);
+      color: var(--muted);
+    }
+
+    .answer-btn.selected-wrong {
+      border-color: var(--red);
+      background: rgba(239,68,68,.18);
+      color: #fff;
+    }
+
+    .answer-letter {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* --- Explanation --- */
+    .explanation {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      background: rgba(108,99,255,.08);
+      border: 1px solid rgba(108,99,255,.25);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text);
+      display: none;
+    }
+
+    .explanation.show { display: block; }
+    .explanation strong { color: var(--accent2); }
+
+    /* --- Next btn --- */
+    .nav-row {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* --- Result screen --- */
+    .result-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 24px;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .score-ring {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 6px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .score-ring .pct { font-size: 2rem; font-weight: 800; }
+    .score-ring .label { font-size: 0.72rem; color: var(--muted); }
+
+    .score-pass .score-ring { border-color: var(--green); }
+    .score-pass .pct { color: var(--green); }
+    .score-fail .score-ring { border-color: var(--red); }
+    .score-fail .pct { color: var(--red); }
+
+    .result-card h2 { font-size: 1.3rem; margin-bottom: 6px; }
+    .result-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .stat { text-align: center; }
+    .stat .n { font-size: 1.5rem; font-weight: 700; }
+    .stat .l { font-size: 0.75rem; color: var(--muted); }
+    .stat.g .n { color: var(--green); }
+    .stat.r .n { color: var(--red); }
+
+    /* hidden */
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<h1>🏋️ Prüfungsvorbereitung</h1>
+<p class="subtitle">Personal-Fitness-Trainer · Trainingsplan-Umsetzung</p>
+
+<!-- Filter -->
+<div class="filters" id="filterRow"></div>
+
+<!-- Start screen -->
+<div class="start-card" id="startScreen">
+  <h2>Quiz starten</h2>
+  <p>Teste dein Wissen zu allen Kernkonzepten aus dem Schulungstag.<br>Wähle oben ein Thema oder starte mit allen Fragen.</p>
+  <button class="btn" onclick="startQuiz()">Alle Fragen starten</button>
+</div>
+
+<!-- Quiz screen -->
+<div id="quizScreen" class="hidden">
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="progText">Frage 1 von 40</span>
+      <span id="progScore">0 richtig</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+  </div>
+
+  <div class="question-card">
+    <div class="q-meta">
+      <span class="q-tag" id="qTag">Thema</span>
+    </div>
+    <div class="q-text" id="qText"></div>
+    <div class="answers" id="answersContainer"></div>
+    <div class="explanation" id="explanation"></div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn secondary" onclick="skipQuestion()">Überspringen</button>
+    <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none">Weiter →</button>
+  </div>
+</div>
+
+<!-- Result screen -->
+<div id="resultScreen" class="hidden">
+  <div class="result-card" id="resultCard">
+    <div class="score-ring">
+      <span class="pct" id="resPct">0%</span>
+      <span class="label">Ergebnis</span>
+    </div>
+    <h2 id="resTitle"></h2>
+    <p id="resMsg"></p>
+    <div class="stats-row">
+      <div class="stat g"><div class="n" id="resCorrect">0</div><div class="l">Richtig</div></div>
+      <div class="stat r"><div class="n" id="resWrong">0</div><div class="l">Falsch</div></div>
+      <div class="stat"><div class="n" id="resTotal">0</div><div class="l">Gesamt</div></div>
+    </div>
+    <button class="btn" onclick="startQuiz()">Nochmal</button>
+    <button class="btn secondary" onclick="backToStart()">Thema wählen</button>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  // ── 1. PRÜFUNG & KONZEPTERSTELLUNG ──────────────────────────────────────
+  {
+    topic: "Prüfung & Konzept",
+    q: "Wie viel Prozent braucht man pro Prüfungsabschnitt, um die praktische Prüfung zu bestehen?",
+    a: ["50 %", "60 %", "70 %", "80 %"],
+    correct: 1,
+    exp: "Laut Seminar sind <strong>60 %</strong> pro Prüfungsabschnitt nötig."
+  },
+  {
+    topic: "Prüfung & Konzept",
+    q: "Was wird in der Prüfung erstellt – ein Konzept oder ein Wochen-/Monatsplan?",
+    a: ["Wochen-/Monatsplan", "Konzept für die erste Trainingsstunde", "Jahresplan", "Ernährungsplan"],
+    correct: 1,
+    exp: "In der Prüfung wird ein <strong>Ganzkörper-Trainingskonzept für die erste Stunde</strong> erstellt – kein Langzeitplan."
+  },
+  {
+    topic: "Prüfung & Konzept",
+    q: "Was ist der Unterschied zwischen Konzept und Plan?",
+    a: ["Es gibt keinen Unterschied", "Ein Konzept ist grober und flexibler; der Plan entsteht nach dem ersten Training", "Ein Plan ist kürzer als ein Konzept", "Ein Konzept gilt für einen Monat"],
+    correct: 1,
+    exp: "Das <strong>Konzept</strong> ist grober/flexibler für die erste Stunde; der detaillierte <strong>Plan</strong> entsteht erst, nachdem man die Person beim Training gesehen hat."
+  },
+  {
+    topic: "Prüfung & Konzept",
+    q: "Was zählt NICHT als Begründung bei der Prüfung?",
+    a: ["Anatomische Begründung", "„Das haben wir so gelernt"", "Trainingsprinzipien", "Wissenschaftliche Studien"],
+    correct: 1,
+    exp: "Phrasen wie <strong>„Das haben wir so gelernt"</strong> oder „Die Petra hat das gesagt" zählen nicht – jede Entscheidung muss inhaltlich begründbar sein."
+  },
+  {
+    topic: "Prüfung & Konzept",
+    q: "Was ist der wertvollste Weg, Trainingsfortschritt zu messen?",
+    a: ["BIA-Messung", "DEXA-Scan", "Fotos + Körpergewicht", "Bluttest"],
+    correct: 2,
+    exp: "<strong>Fotos + Körpergewicht</strong> sind laut Seminar am wertvollsten. BIA/DEXA-Zahlen sind wenig aussagekräftig."
+  },
+  {
+    topic: "Prüfung & Konzept",
+    q: "Was ist der Unterschied zwischen Bewegung und Training?",
+    a: ["Bewegung ist anstrengender", "Training ist zielgerichtet, Bewegung nicht", "Training findet nur im Gym statt", "Es gibt keinen Unterschied"],
+    correct: 1,
+    exp: "<strong>Training ist immer zielgerichtet</strong> und Zielerreichung erkennbar. Bewegung im Alltag kann anstrengend sein, ist aber nicht zielgerichtet."
+  },
+
+  // ── 2. ERSTGESPRÄCH & ANAMNESE ──────────────────────────────────────────
+  {
+    topic: "Erstgespräch",
+    q: "Welche drei Kerninformationen müssen im Erstgespräch erhoben werden?",
+    a: ["Alter, Gewicht, Größe", "Ziel, Trainingserfahrung, gesundheitliche Einschränkungen", "Beruf, Schlaf, Ernährung", "Budget, Zeit, Wohnort"],
+    correct: 1,
+    exp: "Die drei wichtigsten Kerninformationen sind: <strong>Ziel, Trainingserfahrung und gesundheitliche Einschränkungen</strong>."
+  },
+  {
+    topic: "Erstgespräch",
+    q: "Gilt Yoga oder Pilates als Krafttrainingserfahrung?",
+    a: ["Ja, vollständig", "Ja, teilweise", "Nein – zählt nicht als Krafterfahrung", "Nur Pilates zählt"],
+    correct: 2,
+    exp: "<strong>Nein</strong> – Yoga, Pilates und Ausdauer zählen nicht als Krafterfahrung. Wer nur an Maschinen trainiert hat, gilt bei Freigewichten als Anfänger."
+  },
+  {
+    topic: "Erstgespräch",
+    q: "Was soll ein Trainer bei Schmerzen oder Verletzungen tun?",
+    a: ["Übung komplett verbieten", "Zum Arzt schicken und nichts machen", "Bewegungen anpassen statt verbieten", "Schmerzen ignorieren"],
+    correct: 2,
+    exp: "<strong>Bewegungen anpassen</strong> statt verbieten – „Keine Bewegung ist keine Lösung." Trainer sind keine Therapeuten, aber sie passen an."
+  },
+  {
+    topic: "Erstgespräch",
+    q: "Welche Art von Fragen soll man im Erstgespräch bevorzugen?",
+    a: ["Geschlossene Ja/Nein-Fragen", "Offene Fragen", "Suggestivfragen", "Multiple-Choice-Fragen"],
+    correct: 1,
+    exp: "<strong>Offene Fragen</strong> statt Suggestivfragen – z. B. „Wie schaut dein Schlaf aus?" statt „Schläfst du gut?""
+  },
+
+  // ── 3. BEWEGUNGSMUSTER & ÜBUNGSAUSWAHL ──────────────────────────────────
+  {
+    topic: "Bewegungsmuster",
+    q: "Wie viele Bewegungsmuster bilden einen Ganzkörperplan?",
+    a: ["4", "5", "6", "8"],
+    correct: 2,
+    exp: "<strong>6 Bewegungsmuster</strong>: Squat, Hinge, Push horizontal, Push vertikal, Pull horizontal, Pull vertikal."
+  },
+  {
+    topic: "Bewegungsmuster",
+    q: "Welche Muskeln trainiert das Squat-Muster hauptsächlich?",
+    a: ["Hamstrings + Gluteus", "Quadrizeps + Gluteus", "Rücken + Core", "Waden + Adduktoren"],
+    correct: 1,
+    exp: "Squat trainiert primär <strong>Quadrizeps + Gluteus</strong>. Hinge trainiert Hamstrings + Gluteus."
+  },
+  {
+    topic: "Bewegungsmuster",
+    q: "Welche Übungen gehören zum Hinge-Muster?",
+    a: ["Goblet Squat, Box Squat", "RDL, Hip Thrust, Deadlift, Leg Curl", "Bankdrücken, Dips", "Rudern, Klimmzug"],
+    correct: 1,
+    exp: "Zum <strong>Hinge-Muster</strong> gehören: RDL, Hip Thrust, Deadlift, Leg Curl – alle fokussieren Hamstrings + Gluteus."
+  },
+  {
+    topic: "Bewegungsmuster",
+    q: "Was entscheidet beim Pull-Muster, ob Trapezius oder Latissimus trainiert wird?",
+    a: ["Die Griffweite", "Die Schulterblattbewegung", "Die Ellbogenposition", "Das Gewicht"],
+    correct: 1,
+    exp: "<strong>Die Schulterblattbewegung</strong>: Schulterblätter zusammenziehen → Trapezius. Schulterblätter unten halten, Ellbogen körpernah nach unten → Latissimus."
+  },
+  {
+    topic: "Bewegungsmuster",
+    q: "Was soll zuerst gemacht werden, wenn beim Squat die Ferse abhebt?",
+    a: ["Sofort Keil unterlegen", "Squat verbieten", "Zuerst saubere Ausführung einfordern, dann Stand verbreitern, erst danach Keil", "Gewichtheber-Schuhe kaufen"],
+    correct: 2,
+    exp: "Reihenfolge: <strong>1. Ausführung korrigieren, 2. Stand verbreitern, 3. Keil/Ramp</strong> – langfristig Mobility oder Gewichtheber-Schuhe."
+  },
+  {
+    topic: "Bewegungsmuster",
+    q: "Was ist am Faktencheck zur kinetischen Kette korrekt?",
+    a: ["Langhantel-Bankdrücken ist geschlossene Kette", "Jedes Bankdrücken ist eine offene kinetische Kette", "Offene Kette ist besser für Hypertrophie", "Kurzhantel ist immer besser"],
+    correct: 1,
+    exp: "Laut Faktencheck: <strong>Jedes Bankdrücken ist eine offene kinetische Kette</strong> (Hand frei). Die Klassifikation im Seminar war vertauscht. Offen vs. geschlossen hat keinen Hypertrophie-Vorteil."
+  },
+
+  // ── 4. SÄTZE, WIEDERHOLUNGEN & GEWICHT ──────────────────────────────────
+  {
+    topic: "Sätze & Wdh.",
+    q: "Wie viele Sätze pro Übung sind der Standard?",
+    a: ["1–2 Sätze", "3 Sätze", "5 Sätze", "6 Sätze"],
+    correct: 1,
+    exp: "<strong>3 Sätze</strong> pro Übung als Standard; bei unilateralen Übungen eher 2 (je Seite); 4 nur in Ausnahmen."
+  },
+  {
+    topic: "Sätze & Wdh.",
+    q: "Über welches Wiederholungsspektrum findet Hypertrophie statt?",
+    a: ["Nur 8–12", "Nur 1–5", "5–25 Wiederholungen", "15–30 Wiederholungen"],
+    correct: 2,
+    exp: "<strong>5–25 Wiederholungen</strong> – das enge „8–12-Fenster" ist überholt. Extern bestätigt: bei ausreichender Intensität ist Hypertrophie über ~5–30+ Wdh. gleichwertig."
+  },
+  {
+    topic: "Sätze & Wdh.",
+    q: "Warum verwendet man bei Anfängern bei komplexen Übungen eher 5×5 statt 3×8–12?",
+    a: ["Weil 5×5 mehr Muskelaufbau bringt", "Weil der Fokus auf der Technik liegt, nicht auf Arbeitssätzen", "Weil Anfänger stärker sind", "Weil es kürzer dauert"],
+    correct: 1,
+    exp: "Bei <strong>Technik-Fokus 5×5</strong> geht es um das Erlernen der Bewegung, nicht um Hypertrophie-Reize – fast ohne Gewicht, Technikprimat."
+  },
+  {
+    topic: "Sätze & Wdh.",
+    q: "Ist Reps in Reserve (RIR) / Muskelversagen für Anfänger prüfungsrelevant?",
+    a: ["Ja, sehr wichtig", "Nein – nicht prüfungsrelevant und für Anfänger ungeeignet", "Ja, aber nur für Fortgeschrittene im Prüfungsplan", "Nur RIR ist relevant, Versagen nicht"],
+    correct: 1,
+    exp: "<strong>Nein</strong> – RIR/Muskelversagen ist laut Seminar nicht prüfungsrelevant und für Anfänger ungeeignet. Anfänger schätzen die Reserve schlecht ein."
+  },
+  {
+    topic: "Sätze & Wdh.",
+    q: "Wie lange dauert es laut Faktencheck, bis man RIR gut einschätzen kann?",
+    a: ["Über viele Jahre", "Wochen bis wenige Monate (oft ±1 Wdh. nach 4–8 Wochen)", "Erst ab Fortgeschrittenenstadium", "RIR ist nie lernbar"],
+    correct: 1,
+    exp: "Faktencheck: RIR-Genauigkeit ist in <strong>Wochen bis wenigen Monaten erlernbar</strong> – „über Jahre" war übertrieben."
+  },
+
+  // ── 5. PRIORISIERUNG, CORE & WIRBELSÄULE ────────────────────────────────
+  {
+    topic: "Core & Wirbelsäule",
+    q: "Wie wird der priorisierte Bereich im Trainingsplan berücksichtigt?",
+    a: ["Man beginnt immer mit dem Problembereich", "Mehr/erkennbare Übungen für diesen Bereich – aber trotzdem mit komplexen Übungen starten", "Man lässt andere Muster weg", "Nur Isolation für den Problembereich"],
+    correct: 1,
+    exp: "Der <strong>priorisierte Bereich bekommt mehr Übungen</strong>, aber der Plan startet trotzdem mit komplexen Grundübungen. Alle Bewegungsmuster müssen vorkommen."
+  },
+  {
+    topic: "Core & Wirbelsäule",
+    q: "Was ist das Ziel beim Lower-Back-Training?",
+    a: ["Nur den Rückenstrecker trainieren", "Alle stabilisierenden Strukturen stärken, damit der Rückenstrecker nicht allein arbeitet", "Situps für den Rücken", "Hyperextensions täglich"],
+    correct: 1,
+    exp: "<strong>Ganzheitliche Stabilität</strong>: nicht nur der Rückenstrecker, sondern alle stabilisierenden Strukturen stärken."
+  },
+  {
+    topic: "Core & Wirbelsäule",
+    q: "Warum wird belastete Rotation (z. B. Russian Twist) abgelehnt?",
+    a: ["Weil es zu schwer ist", "Bandscheiben halten Axialbelastung gut aus, aber Rotation schlecht", "Weil es keine Muskeln aufbaut", "Wegen Gleichgewichtsproblemen"],
+    correct: 1,
+    exp: "Bandscheiben sind sehr belastbar unter <strong>Axialkraft</strong>, aber schlecht für Rotationsbelastung. Ziel ist Anti-Rotation (z. B. Pallof Press), keine belastete Rotation."
+  },
+  {
+    topic: "Core & Wirbelsäule",
+    q: "Was sagt der Faktencheck zum Thema Planks und Muskelaufbau?",
+    a: ["Planks bauen keine Muskeln auf – bestätigt", "Isometrie erzeugt mechanische Spannung – Planks sind nicht rein koordinativ", "Planks sind schädlich", "Planks bauen mehr auf als Crunches – bestätigt"],
+    correct: 1,
+    exp: "Faktencheck: <strong>Isometrie erzeugt mechanische Spannung</strong> (Hypertrophiereiz) – Planks sind nicht rein koordinativ. Dynamische Übungen über volle ROM sind für maximale Bauch-Hypertrophie tendenziell effektiver."
+  },
+
+  // ── 6. KÖRPERGEWICHT, WASSER & HORMONE ──────────────────────────────────
+  {
+    topic: "Körpergewicht & Wasser",
+    q: "Warum schwankt das Körpergewicht täglich ohne Fettveränderung?",
+    a: ["Weil Muskeln wachsen", "Wegen Wasser, Glykogen und Darminhalt", "Wegen Hormonschwankungen im Grundumsatz", "Wegen schlechtem Schlaf"],
+    correct: 1,
+    exp: "<strong>Wasser, Glykogen und Darminhalt</strong> schwanken kurzfristig – Muskeln und Fett ändern sich nur langfristig. Verstopfung kann z. B. +2 kg machen."
+  },
+  {
+    topic: "Körpergewicht & Wasser",
+    q: "Wie funktioniert der Keto-Mechanismus bei schnellem Gewichtsverlust?",
+    a: ["Ketose verbrennt direkt mehr Fett", "Entleerte Glykogenspeicher verlieren gebundenes Wasser – kein echter Fettverlust ohne Defizit", "Keto erhöht den Grundumsatz", "Ketone unterdrücken den Hunger immer"],
+    correct: 1,
+    exp: "Keto entleert Glykogenspeicher – jedes g Glykogen bindet ~3–4 g Wasser. Der schnelle Gewichtsverlust ist <strong>Wasserverlust, kein Fettverlust</strong>. Ohne Kaloriendefizit kein Fettverlust."
+  },
+  {
+    topic: "Körpergewicht & Wasser",
+    q: "Wie beeinflusst Kreatin das Gewicht?",
+    a: ["Kreatin führt zu subkutanem Aufschwemmen", "Kreatin lagert Wasser intrazellulär ein; beim Laden +1–2 kg auf der Waage möglich", "Kreatin verändert das Gewicht gar nicht", "Kreatin lässt Fett schmelzen"],
+    correct: 1,
+    exp: "Kreatin lagert Wasser <strong>intrazellulär</strong> im Muskel (kein Bloating). In der Ladephase +1–2 kg auf der Waage gut dokumentiert."
+  },
+  {
+    topic: "Körpergewicht & Wasser",
+    q: "Was ist laut Faktencheck der tatsächliche Wasseranteil im Körper eines Erwachsenen?",
+    a: ["70–75 % (wie im Seminar)", "~50–60 % (Männer ~60 %, Frauen ~50–55 %)", "~30–40 %", "~80 %"],
+    correct: 1,
+    exp: "Faktencheck: <strong>~50–60 %</strong> beim Erwachsenen. 70 % gilt für Säuglinge oder die fettfreie Masse – nicht den Gesamtkörper."
+  },
+  {
+    topic: "Körpergewicht & Wasser",
+    q: "Stimmt es, dass Cortisol Wasser bindet und chronischer Stress zu dauerhafter Wassereinlagerung führt?",
+    a: ["Ja, vollständig korrekt", "Nein – Cortisol bindet kein Wasser; fördert eher die Ausscheidung", "Ja, aber nur bei Frauen", "Nur bei Nacht"],
+    correct: 1,
+    exp: "Faktencheck: <strong>„Cortisol bindet Wasser" ist physiologisch falsch</strong>. Cortisol fördert über ADH-Hemmung eher die Ausscheidung. Chronischer Stress kann über RAAS/Aldosteron vorübergehend Natrium/Wasser halten – aber keine dauerhaf te Einlagerung."
+  },
+
+  // ── 7. ENERGIEBILANZ & VERBRAUCH ────────────────────────────────────────
+  {
+    topic: "Energiebilanz",
+    q: "Was ist die Grundumsatz-Faustformel aus dem Seminar?",
+    a: ["30 × Körpergewicht", "22 × Körpergewicht", "BMI × 100", "Alter × 20"],
+    correct: 1,
+    exp: "<strong>22 × Körpergewicht (kg)</strong> als grobe Schätzung; dann PAL-Faktor multiplizieren. Mifflin-St Jeor ist genauer und geschlechtsspezifisch."
+  },
+  {
+    topic: "Energiebilanz",
+    q: "Was bedeutet NEAT und warum ist es relevant?",
+    a: ["Normale Ernährungs-Anpassungs-Technik", "Non-Exercise Activity Thermogenesis – unbewusste Alltagsbewegung, die im Defizit sinkt", "Nacht-Essen-Anpassung", "Nichts – kaum relevant"],
+    correct: 1,
+    exp: "<strong>NEAT</strong> = unbewusste Alltagsbewegung (Zappeln, Stehen, Gehen). Im Defizit sinkt NEAT unbewusst (~100–400 kcal/Tag) → Plateaus. Gegenmaßnahme: Schritte bewusst hochhalten."
+  },
+  {
+    topic: "Energiebilanz",
+    q: "Welcher Makronährstoff hat den höchsten thermischen Effekt (TEF)?",
+    a: ["Fett (~0–3 %)", "Kohlenhydrate (~5–10 %)", "Protein (~20–30 %)", "Alkohol (~15 %)"],
+    correct: 2,
+    exp: "<strong>Protein hat den höchsten TEF (~20–30 %)</strong>. 300 kcal extra essen ≠ 300 kcal Überschuss – besonders bei Protein. Extern bestätigt."
+  },
+  {
+    topic: "Energiebilanz",
+    q: "Wie verlässlich sind Kalorienverbrauchswerte von Smartwatches?",
+    a: ["Sehr genau, ±5 %", "Brauchbar für absolute Werte", "Unzuverlässig für absolute Werte, aber als Relativwert/Trend nutzbar", "Exakt wie klinische Messung"],
+    correct: 2,
+    exp: "Faktencheck: Absolute Kalorienwerte sind unzuverlässig (Stanford: 27–93 % Fehler). Aber <strong>als Relativwert/Trend nutzbar</strong> – Herzfrequenz und Schritte sind sogar recht genau."
+  },
+  {
+    topic: "Energiebilanz",
+    q: "Welche PAL-Werte gelten für eine überwiegend sitzende Person?",
+    a: ["1,1–1,2", "1,3–1,5", "1,7–1,9", "2,0–2,2"],
+    correct: 1,
+    exp: "<strong>PAL 1,3–1,5</strong> für sitzende Tätigkeit; +gehen ~1,6; stehend/Handwerker ~1,8. Laut Faktencheck korrekt nach FAO/DGE."
+  },
+
+  // ── 8. FETTREDUKTION & MUSKELAUFBAU ─────────────────────────────────────
+  {
+    topic: "Fettreduktion & Aufbau",
+    q: "Wie viel % Körpergewicht pro Woche ist die optimale Rate of Loss?",
+    a: ["0,1–0,3 %", "0,5–1 % (bei stark Übergewichtigen bis 1,5 %)", "2–3 %", "So viel wie möglich"],
+    correct: 1,
+    exp: "<strong>0,5–1 % pro Woche</strong> maximiert den Muskelerhalt. Bei stark Übergewichtigen bis 1,5 % möglich. Extern bestätigt (Helms et al. 2014)."
+  },
+  {
+    topic: "Fettreduktion & Aufbau",
+    q: "Wie viel Protein empfiehlt das Seminar im Defizit?",
+    a: ["0,8 g/kg (DGE-Mindest)", "1,0 g/kg", "~2 g/kg (Bereich 1,6–2,5 g/kg)", "4 g/kg"],
+    correct: 2,
+    exp: "<strong>~2 g/kg</strong> als persönliche Empfehlung (Bereich 1,6–2,5 g/kg). Faktencheck: ISSN-Korridor liegt höher (2,3–3,1 g/kg) – 2 g/kg ist eher Untergrenze."
+  },
+  {
+    topic: "Fettreduktion & Aufbau",
+    q: "Was ist laut Faktencheck 1 kg Körperfett tatsächlich wert (kcal)?",
+    a: ["5.000 kcal", "7.000 kcal (Seminarzahl)", "~7.700 kcal (etablierter Wert)", "9.000 kcal"],
+    correct: 2,
+    exp: "Faktencheck: <strong>~7.700 kcal/kg</strong> (Wishnofsky). Das Seminar nannte 7.000 – rund 9 % zu niedrig. Die lineare Rechnung ist ohnehin nur eine Faustregel."
+  },
+  {
+    topic: "Fettreduktion & Aufbau",
+    q: "Wie viel Überschuss braucht man für Muskelaufbau?",
+    a: ["Gar keinen Überschuss", "Moderater Überschuss 300–500 kcal; viele essen zu wenig", "1.000–2.000 kcal Überschuss", "Nur Protein erhöhen reicht"],
+    correct: 1,
+    exp: "<strong>300–500 kcal moderater Überschuss</strong>. Das größte Problem: die meisten essen zu wenig. Anfänger können in den ersten Monaten auch ohne Überschuss Recomposition machen."
+  },
+  {
+    topic: "Fettreduktion & Aufbau",
+    q: "Was sagt der Faktencheck zu realistischen Muskelaufbau-Raten für Anfänger pro Monat?",
+    a: ["2–2,5 % Körpergewicht (wie im Seminar)", "1–1,5 % Körpergewicht (Aragon/McDonald)", "5 % Körpergewicht", "0,1 % Körpergewicht"],
+    correct: 1,
+    exp: "Faktencheck: <strong>~1–1,5 % Körpergewicht/Monat</strong> für Anfänger (Aragon/McDonald). Die Seminarzahl (2–2,5 %) verwechselt reine Muskelmasse mit Gesamtgewichtszunahme inkl. Glykogen/Wasser/Fett."
+  },
+
+  // ── 9. SALZ, KNOCHEN & GESUNDHEIT ───────────────────────────────────────
+  {
+    topic: "Salz & Gesundheit",
+    q: "Was sagt der wissenschaftliche Konsens zum Salz-Blutdruck-Zusammenhang?",
+    a: ["Salz hat keinen Einfluss auf Blutdruck", "Salzreduktion senkt Blutdruck nur bei bereits Hypertonen", "Es gibt einen kausalen Zusammenhang – Salzreduktion senkt BP auch bei Normotonikern", "Salz schützt vor Bluthochdruck"],
+    correct: 2,
+    exp: "Faktencheck (widerlegt): <strong>Es gibt einen kausalen Salz-Blutdruck-Zusammenhang</strong>. Salzreduktion senkt BP auch bei Normotonikern (Cochrane: −3,6/1,7 mmHg), bei Hypertonen stärker. WHO-Empfehlung: <5 g/Tag."
+  },
+  {
+    topic: "Salz & Gesundheit",
+    q: "Verbessert nur Krafttraining die Knochendichte, nicht Ausdauer?",
+    a: ["Ja, nur Krafttraining", "Nein – auch Impact-Ausdauer (Laufen, Springen) verbessert die Knochendichte", "Nur Schwimmen hilft", "Ausdauer ist besser als Kraft für Knochen"],
+    correct: 1,
+    exp: "Faktencheck: <strong>Mechanische Belastung (Impact)</strong> entscheidet – Krafttraining UND gewichtstragendes Ausdauertraining (Laufen, Springen) verbessern die Knochendichte. Schwimmen und Radfahren (low-impact) nicht."
+  },
+  {
+    topic: "Salz & Gesundheit",
+    q: "Ist Krafttraining für die Gesundheit wichtiger als Ausdauertraining?",
+    a: ["Ja, Krafttraining ist eindeutig überlegen", "Nein – beide senken Mortalität; am stärksten ist die Kombination", "Ausdauer ist wichtiger", "Nur Kombination hat Effekt"],
+    correct: 1,
+    exp: "Faktencheck (umstritten): <strong>Beide Trainingsformen senken Mortalität unabhängig</strong>. Am stärksten ist die Kombination (~40 % geringeres Risiko). Krafttraining ist wertvoll, aber nicht „maßgeblicher"."
+  },
+  {
+    topic: "Salz & Gesundheit",
+    q: "Warum soll man von „Körperfettreduktion" statt „Abnehmen" sprechen?",
+    a: ["Weil Abnehmen verboten ist", "Weil das Körpergewicht nicht nur Fett ist – es lässt sich leicht manipulieren (Wasser, Darm)", "Weil Ärzte das so verlangen", "Nur ein sprachlicher Trend"],
+    correct: 1,
+    exp: "<strong>Körpergewicht ≠ Körperfett</strong>. Gewicht schwankt durch Wasser, Glykogen, Darminhalt. Daher präzise von „Körperfettreduktion" sprechen – Voraussetzung ist immer ein Kaloriendefizit."
+  }
+];
+
+const TOPICS = ["Alle", ...new Set(QUESTIONS.map(q => q.topic))];
+
+let currentFilter = "Alle";
+let pool = [];
+let idx = 0;
+let correct = 0;
+let wrong = 0;
+let answered = false;
+
+// Build filter chips
+const filterRow = document.getElementById("filterRow");
+TOPICS.forEach(t => {
+  const c = document.createElement("button");
+  c.className = "chip" + (t === "Alle" ? " active" : "");
+  c.textContent = t;
+  c.onclick = () => {
+    document.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+    c.classList.add("active");
+    currentFilter = t;
+    backToStart();
+  };
+  filterRow.appendChild(c);
+});
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function startQuiz() {
+  const filtered = currentFilter === "Alle" ? QUESTIONS : QUESTIONS.filter(q => q.topic === currentFilter);
+  pool = shuffle([...filtered]);
+  idx = 0; correct = 0; wrong = 0;
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  if (idx >= pool.length) { showResult(); return; }
+  answered = false;
+  const q = pool[idx];
+
+  document.getElementById("qTag").textContent = q.topic;
+  document.getElementById("qText").textContent = q.q;
+
+  const cont = document.getElementById("answersContainer");
+  cont.innerHTML = "";
+  const letters = ["A", "B", "C", "D"];
+  const shuffledAnswers = q.a.map((text, i) => ({ text, i }));
+  // don't shuffle answers so indices stay consistent with q.correct
+  q.a.forEach((text, i) => {
+    const btn = document.createElement("button");
+    btn.className = "answer-btn";
+    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${text}`;
+    btn.onclick = () => selectAnswer(i, q.correct, q.exp);
+    cont.appendChild(btn);
+  });
+
+  document.getElementById("explanation").className = "explanation";
+  document.getElementById("explanation").innerHTML = "";
+  document.getElementById("nextBtn").style.display = "none";
+
+  // progress
+  const total = pool.length;
+  document.getElementById("progText").textContent = `Frage ${idx + 1} von ${total}`;
+  document.getElementById("progScore").textContent = `${correct} richtig`;
+  document.getElementById("progFill").style.width = `${(idx / total) * 100}%`;
+}
+
+function selectAnswer(chosen, correctIdx, exp) {
+  if (answered) return;
+  answered = true;
+
+  const btns = document.querySelectorAll(".answer-btn");
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correctIdx) {
+      btn.classList.add("correct");
+    } else if (i === chosen) {
+      btn.classList.add("selected-wrong");
+    } else {
+      btn.classList.add("wrong");
+    }
+  });
+
+  if (chosen === correctIdx) correct++; else wrong++;
+
+  const expEl = document.getElementById("explanation");
+  expEl.innerHTML = exp;
+  expEl.classList.add("show");
+
+  document.getElementById("nextBtn").style.display = "inline-block";
+  document.getElementById("progScore").textContent = `${correct} richtig`;
+}
+
+function skipQuestion() {
+  if (!answered) wrong++;
+  idx++;
+  showQuestion();
+}
+
+function nextQuestion() {
+  idx++;
+  showQuestion();
+}
+
+function showResult() {
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
+
+  const total = pool.length;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const pass = pct >= 60;
+
+  document.getElementById("resPct").textContent = pct + "%";
+  document.getElementById("resCorrect").textContent = correct;
+  document.getElementById("resWrong").textContent = wrong;
+  document.getElementById("resTotal").textContent = total;
+
+  const card = document.getElementById("resultCard");
+  card.className = pass ? "result-card score-pass" : "result-card score-fail";
+  document.getElementById("resTitle").textContent = pass ? "Bestanden! 🎉" : "Weiter üben!";
+  document.getElementById("resMsg").textContent = pass
+    ? "Du hast die 60%-Marke erreicht. Gut vorbereitet für die Prüfung!"
+    : "Noch nicht ganz – aber du weißt jetzt, wo du nachlesen solltest.";
+}
+
+function backToStart() {
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
