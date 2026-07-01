@@ -669,10 +669,252 @@ const QUESTIONS = [
   },
   {
     topic: "Salz & Gesundheit",
-    q: "Warum soll man von „Körperfettreduktion\" statt „Abnehmen\" sprechen?",
+    q: "Warum soll man von \"Koerperfettreduktion\" statt \"Abnehmen\" sprechen?",
     a: ["Weil Abnehmen verboten ist", "Weil das Körpergewicht nicht nur Fett ist – es lässt sich leicht manipulieren (Wasser, Darm)", "Weil Ärzte das so verlangen", "Nur ein sprachlicher Trend"],
     correct: 1,
-    exp: "<strong>Körpergewicht ≠ Körperfett</strong>. Gewicht schwankt durch Wasser, Glykogen, Darminhalt. Daher präzise von „Körperfettreduktion\" sprechen – Voraussetzung ist immer ein Kaloriendefizit."
+    exp: "<strong>Körpergewicht ist nicht gleich Körperfett</strong>. Gewicht schwankt durch Wasser, Glykogen, Darminhalt. Daher präzise von Körperfettreduktion sprechen – Voraussetzung ist immer ein Kaloriendefizit."
+  },
+
+  // ── 10. TRAININGSLEHRE & PLANUNG (Laut Andi: Grundlagen für die Prüfung) ─
+  {
+    topic: "Trainingslehre",
+    q: "Was ist Training laut Definition?",
+    a: [
+      "Jede körperliche Bewegung im Alltag",
+      "Ein zielgerichteter, geplanter Prozess zur Verbesserung der Leistungsfähigkeit durch Belastungsreize",
+      "Spontane sportliche Aktivität ohne Plan",
+      "Ausschließlich Wettkampfsport"
+    ],
+    correct: 1,
+    exp: "<strong>Training</strong> = zielgerichteter, geplanter Prozess. Entscheidend: Belastungsreiz + Ziel + Messbarkeit. Unterschied zu Bewegung: Training ist immer zielgerichtet."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was beschreibt das Prinzip der Superkompensation?",
+    a: [
+      "Der Körper wird durch Training geschwächt",
+      "Nach einer Belastung sinkt die Leistung, erholt sich dann aber auf ein höheres Niveau als vorher",
+      "Mehr Training führt immer zu mehr Leistung",
+      "Der Körper passt sich nur in der Belastungsphase an"
+    ],
+    correct: 1,
+    exp: "<strong>Superkompensation</strong>: Belastung → Ermüdung (Leistung sinkt) → Erholung → Leistungsniveau steigt über Ausgangsniveau. Das neue Training muss genau in diesem Hochpunkt ansetzen."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was passiert, wenn man zu früh (vor der Superkompensation) wieder trainiert?",
+    a: [
+      "Noch bessere Anpassung",
+      "Gleiche Anpassung wie geplant",
+      "Übertraining / Leistungsstagnation oder -abfall",
+      "Schnellere Erholung"
+    ],
+    correct: 2,
+    exp: "Trainiert man zu früh (Körper noch nicht erholt), summiert sich Ermüdung → <strong>Übertraining</strong>. Trainiert man zu spät (nach dem Superkompensationsgipfel), verpascht man den Anpassungseffekt."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was besagt das Prinzip des trainingswirksamen Reizes?",
+    a: [
+      "Jede Belastung erzeugt eine Anpassung",
+      "Nur Reize über einer bestimmten Schwelle (Reizschwelle) lösen Anpassungen aus",
+      "Je mehr Schmerz, desto besser die Anpassung",
+      "Der Reiz muss täglich gesetzt werden"
+    ],
+    correct: 1,
+    exp: "<strong>Reizschwelle</strong> (Arndt-Schulz-Gesetz): Zu schwache Reize → keine Wirkung. Mittelstarke Reize → Anpassung. Zu starke Reize → Schädigung. Der Reiz muss ausreichend stark sein."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was bedeutet das Prinzip der progressiven Belastungssteigerung?",
+    a: [
+      "Immer gleich schwer trainieren",
+      "Die Belastung muss mit dem Anpassungsfortschritt regelmäßig gesteigert werden",
+      "Nur das Gewicht darf gesteigert werden, nicht Sätze/Wdh.",
+      "Jede Einheit muss schwerer sein als die vorherige"
+    ],
+    correct: 1,
+    exp: "<strong>Progressive Überladung</strong>: Wenn der Körper sich angepasst hat, muss der Reiz gesteigert werden (Gewicht, Volumen, Intensität, Frequenz) – sonst keine weiteren Anpassungen."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was besagt das Prinzip der Kontinuität?",
+    a: [
+      "Training muss täglich stattfinden",
+      "Anpassungen entstehen nur durch regelmäßiges, langfristiges Training – Unterbrechungen führen zu Rückschritten (Detraining)",
+      "Einmal pro Woche reicht immer",
+      "Pausen sind schädlich"
+    ],
+    correct: 1,
+    exp: "<strong>Kontinuität</strong>: Anpassungen sind reversibel. Ohne regelmäßigen Reiz baut der Körper Anpassungen ab (Detraining). Dauerhafter Fortschritt braucht langfristige Konsistenz."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was beschreibt das Prinzip der Individualität?",
+    a: [
+      "Alle Menschen reagieren gleich auf Training",
+      "Trainingspläne müssen auf die individuellen Voraussetzungen, Ziele und Reaktionen der Person angepasst werden",
+      "Nur Anfänger brauchen individuelle Pläne",
+      "Geschlecht ist der einzige individuelle Faktor"
+    ],
+    correct: 1,
+    exp: "<strong>Individualität</strong>: Alter, Geschlecht, Trainingserfahrung, Genetik, Gesundheitszustand – all das beeinflusst die Trainingsreaktion. Kein Plan passt für alle gleich."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind die vier Belastungsparameter, mit denen man Training steuert?",
+    a: [
+      "Gewicht, Tempo, Schmerz, Pause",
+      "Intensität, Umfang, Dichte und Dauer",
+      "Wiederholungen, Sätze, Übungen, Muskeln",
+      "Kraft, Ausdauer, Koordination, Schnelligkeit"
+    ],
+    correct: 1,
+    exp: "<strong>4 Belastungsparameter</strong>: Intensität (wie schwer), Umfang (Volumen – Gesamtarbeit), Dichte (Verhältnis Belastung:Pause), Dauer (Zeit der Einheit/des Reizes)."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist der Unterschied zwischen Makro-, Meso- und Mikrozyklus?",
+    a: [
+      "Nur Begriffe – meinen dasselbe",
+      "Makro = Jahresplan, Meso = Block (Wochen bis Monate), Mikro = einzelne Trainingswoche",
+      "Makro = eine Einheit, Meso = eine Woche, Mikro = ein Monat",
+      "Nur im Wettkampfsport relevant"
+    ],
+    correct: 1,
+    exp: "<strong>Zyklen der Periodisierung</strong>: Makrozyklus (Saison/Jahr), Mesozyklus (mehrere Wochen – ein Trainingsblock), Mikrozyklus (eine Woche). Jeder Zyklus hat eine spezifische Zielsetzung."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Welche Trainingsphasen gibt es in der klassischen Periodisierung?",
+    a: [
+      "Nur Aufbau- und Abbauphasen",
+      "Allgemeine Vorbereitungsphase, spezifische Vorbereitungsphase, Wettkampfphase, Übergangsphase (Regeneration)",
+      "Anfänger-, Fortgeschrittenen- und Expertenphase",
+      "Kraft-, Ausdauer- und Koordinationsphase"
+    ],
+    correct: 1,
+    exp: "<strong>Klassische Periodisierung</strong> (Matveyev): 1. Allgemeine Vorbereitung (Basis aufbauen), 2. Spezifische Vorbereitung (sportartspezifisch), 3. Wettkampfphase (Peak), 4. Übergangsphase (aktive Erholung)."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Warum ist Periodisierung auch für Fitnesstraining (nicht nur Wettkampfsport) sinnvoll?",
+    a: [
+      "Sie ist nur für Profis relevant",
+      "Sie ermöglicht gezielte Belastungssteuerung, verhindert Übertraining und ermöglicht langfristigen Fortschritt",
+      "Weil Behörden es vorschreiben",
+      "Damit man weniger trainieren muss"
+    ],
+    correct: 1,
+    exp: "<strong>Periodisierung im Fitness</strong>: Gezielt Phasen mit mehr Volumen (Hypertrophie), mehr Intensität (Kraft) oder Regeneration einzubauen verhindert Stagnation und Übertraining – auch ohne Wettkampfziel sinnvoll."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind motorische Grundeigenschaften? Welche fünf gibt es?",
+    a: [
+      "Kraft, Schnelligkeit, Ausdauer, Koordination, Flexibilität",
+      "Stärke, Tempo, Kondition, Gleichgewicht, Mobilität",
+      "Muskeln, Nerven, Knochen, Sehnen, Faszien",
+      "Hypertrophie, Definierung, Ausdauer, Kraft, Gewicht"
+    ],
+    correct: 0,
+    exp: "<strong>5 motorische Grundeigenschaften</strong>: Kraft, Schnelligkeit, Ausdauer, Koordination, Flexibilität (Beweglichkeit). Alle fünf sind trainierbar – Training immer auf das primäre Ziel ausrichten."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was bedeutet Detraining?",
+    a: [
+      "Gezieltes leichteres Training zur Regeneration",
+      "Der Rückgang von Trainingsanpassungen bei Unterbrechung des Trainings",
+      "Training mit weniger Gewicht als gewohnt",
+      "Das Abkühlen nach dem Training"
+    ],
+    correct: 1,
+    exp: "<strong>Detraining</strong>: Werden Trainingsreize weggelassen, bildet der Körper nicht mehr benötigte Anpassungen zurück. Kraft-Anpassungen bleiben länger als Ausdauer-Anpassungen. Kontinuität ist daher entscheidend."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist der Unterschied zwischen allgemeiner und spezifischer Ausdauer/Kraft?",
+    a: [
+      "Es gibt keinen Unterschied",
+      "Allgemein = unspezifische Grundfitness; spezifisch = auf eine bestimmte Sportart/Bewegung ausgerichtet",
+      "Allgemein = für Anfänger, spezifisch = für Profis",
+      "Allgemein = mehr Übungen; spezifisch = weniger Übungen"
+    ],
+    correct: 1,
+    exp: "<strong>Allgemein vs. spezifisch</strong>: In der allgemeinen Vorbereitung wird die Grundfitness (Kraft, Ausdauer) breit aufgebaut. Spezifisches Training zielt auf die konkrete Sportart/Bewegung – z. B. Squat-Kraft für einen Läufer vs. allgemeine Beinkraft."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sollte man laut Trainingslehre im Trainingsaufbau vermeiden?",
+    a: [
+      "Zu wenig Erholung, fehlende Progression, zu monotones Training ohne Variation",
+      "Mehr als 3 Sätze pro Übung",
+      "Training an zwei aufeinanderfolgenden Tagen",
+      "Übungen mit freien Gewichten"
+    ],
+    correct: 0,
+    exp: "<strong>Typische Fehler</strong>: 1) Zu wenig Erholung (Übertraining), 2) fehlende Progression (Stagnation), 3) zu eintöniges Training ohne Variation (Adaptationsplateau), 4) keine Individualisierung. Alle führen zu Stagnation oder Verletzung."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist Übertraining und wie erkennt man es?",
+    a: [
+      "Zu viel Muskelaufbau in kurzer Zeit",
+      "Anhaltender Leistungsabfall trotz ausreichender Erholung, Erschöpfung, Schlafstörungen, Motivationsverlust",
+      "Schmerzen direkt nach dem Training (DOMS)",
+      "Zu viele verschiedene Übungen im Plan"
+    ],
+    correct: 1,
+    exp: "<strong>Übertraining</strong>: Chronische Dysbalance zwischen Belastung und Erholung. Symptome: anhaltender Leistungsabfall, Erschöpfung, Schlafstörungen, erhöhte Verletzungsanfälligkeit, Motivationsverlust. Therapie: Trainingsreduktion, Erholung."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was bedeutet das Prinzip der Variation?",
+    a: [
+      "Jeden Tag etwas anderes tun, ohne Plan",
+      "Belastungsreize regelmäßig verändern (Übungen, Methoden, Intensitäten), um Anpassungsplateaus zu verhindern",
+      "Immer gleiche Übungen für maximale Anpassung",
+      "Variation ist nur für Fortgeschrittene relevant"
+    ],
+    correct: 1,
+    exp: "<strong>Prinzip der Variation</strong>: Der Körper gewöhnt sich an gleichbleibende Reize (Adaptationsplateau). Durch Variation von Übungen, Wiederholungsbereichen oder Methoden bleiben die Reize wirksam."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Wie lange dauert es in der Regel, bis erste sichtbare Anpassungen (Kraft/Muskeln) auftreten?",
+    a: [
+      "1–3 Tage",
+      "Erst nach einem Jahr",
+      "Erste Kraftzuwächse nach 2–4 Wochen (neural); sichtbarer Muskelaufbau nach 6–12 Wochen",
+      "Nach genau 8 Wochen bei jedem Menschen"
+    ],
+    correct: 2,
+    exp: "<strong>Anpassungszeitraum</strong>: Erste Kraftzuwächse (2–4 Wochen) sind hauptsächlich <em>neural</em> (bessere Muskelaktivierung, Koordination) – kein echter Muskelaufbau. Strukturelle Hypertrophie setzt nach ~6–12 Wochen ein."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist der Unterschied zwischen neuromuskulärer Anpassung und Hypertrophie?",
+    a: [
+      "Es gibt keinen Unterschied",
+      "Neural = bessere Muskelaktivierung/Koordination (kurzfristig); Hypertrophie = Vergrösserung der Muskelfasern (mittelfristig)",
+      "Hypertrophie passiert schneller als neuronale Anpassung",
+      "Neural = nur für Sportler; Hypertrophie = nur für Bodybuilder"
+    ],
+    correct: 1,
+    exp: "<strong>Zwei Phasen</strong>: 1) Neuronale Anpassung (Wochen 1–4): mehr Muskelfasern werden gleichzeitig aktiviert, Koordination verbessert sich. 2) Hypertrophie (ab Woche 6+): Muskelfaserdurchmesser nimmt zu (Myofibrillen-Hypertrophie)."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist der praktische Nutzen der Periodisierung laut Trainer Andi?",
+    a: [
+      "Man muss alle Modelle auswendig lernen",
+      "Die Grundidee verstehen: Belastung steuern, Phasen planen, Überlastung vermeiden, langfristigen Fortschritt ermöglichen",
+      "Periodisierung gilt nur für Wettkampfsportler",
+      "Klassische Modelle werden heute 1:1 angewendet"
+    ],
+    correct: 1,
+    exp: "Laut Trainer Andi: <strong>Grundidee verstehen</strong> – nicht jedes Modell auswendig. Wichtig: Belastung steuern, Phasen sinnvoll planen, Überlastung vermeiden, langfristigen Fortschritt ermöglichen. Klassische Modelle werden heute nicht immer 1:1 angewendet."
   }
 ];
 
