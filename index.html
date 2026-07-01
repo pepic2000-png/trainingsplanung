@@ -959,13 +959,12 @@ function showQuestion() {
   const cont = document.getElementById("answersContainer");
   cont.innerHTML = "";
   const letters = ["A", "B", "C", "D"];
-  const shuffledAnswers = q.a.map((text, i) => ({ text, i }));
-  // don't shuffle answers so indices stay consistent with q.correct
-  q.a.forEach((text, i) => {
+  const shuffledAnswers = shuffle(q.a.map((text, i) => ({ text, isCorrect: i === q.correct })));
+  shuffledAnswers.forEach((ans, i) => {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
-    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${text}`;
-    btn.onclick = () => selectAnswer(i, q.correct, q.exp);
+    btn.innerHTML = `<span class="answer-letter">${letters[i]}</span>${ans.text}`;
+    btn.onclick = () => selectAnswer(i, shuffledAnswers.findIndex(a => a.isCorrect), q.exp);
     cont.appendChild(btn);
   });
 
