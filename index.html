@@ -675,246 +675,282 @@ const QUESTIONS = [
     exp: "<strong>Körpergewicht ist nicht gleich Körperfett</strong>. Gewicht schwankt durch Wasser, Glykogen, Darminhalt. Daher präzise von Körperfettreduktion sprechen – Voraussetzung ist immer ein Kaloriendefizit."
   },
 
-  // ── 10. TRAININGSLEHRE & PLANUNG (Laut Andi: Grundlagen für die Prüfung) ─
+  // ── 10. TRAININGSLEHRE (direkt aus dem PFA-Skript von Peter Raidl) ────────
   {
     topic: "Trainingslehre",
-    q: "Was ist Training laut Definition?",
+    q: "Welche vier Hauptprinzipien der Trainingslehre nennt das PFA-Skript?",
     a: [
-      "Jede körperliche Bewegung im Alltag",
-      "Ein zielgerichteter, geplanter Prozess zur Verbesserung der Leistungsfähigkeit durch Belastungsreize",
-      "Spontane sportliche Aktivität ohne Plan",
-      "Ausschließlich Wettkampfsport"
+      "Kraft, Ausdauer, Schnelligkeit, Koordination",
+      "Spezifität, Überladung/trainingswirksamer Reiz, Variation, Progression",
+      "Warm-up, Training, Cool-down, Dehnen",
+      "Periodisierung, Intensität, Volumen, Pause"
     ],
     correct: 1,
-    exp: "<strong>Training</strong> = zielgerichteter, geplanter Prozess. Entscheidend: Belastungsreiz + Ziel + Messbarkeit. Unterschied zu Bewegung: Training ist immer zielgerichtet."
+    exp: "<strong>4 Hauptprinzipien laut PFA-Skript</strong> (Coburn et al. 2012 / Bompa & Haff 2009): 1) Spezifität, 2) Überladung / trainingswirksamer Reiz, 3) Variation, 4) Progression. Dazu kommen weitere Prinzipien: Individualisierung, Periodisierung, Prioritätsprinzip, Wechsel von Belastung und Erholung."
   },
   {
     topic: "Trainingslehre",
-    q: "Was beschreibt das Prinzip der Superkompensation?",
+    q: "Was sind laut PFA-Skript die weiteren Trainingsprinzipien (neben den 4 Hauptprinzipien)?",
     a: [
-      "Der Körper wird durch Training geschwächt",
-      "Nach einer Belastung sinkt die Leistung, erholt sich dann aber auf ein höheres Niveau als vorher",
-      "Mehr Training führt immer zu mehr Leistung",
-      "Der Körper passt sich nur in der Belastungsphase an"
+      "Dehnen, Aufwärmen, Abkühlen",
+      "Individualisierung, Periodisierung, Prioritätsprinzip, Wechsel von Belastung & Erholung, Wechselwirkung von Belastungen",
+      "Kraft, Hypertrophie, Ausdauer",
+      "Superkompensation, Detraining, Retraining"
     ],
     correct: 1,
-    exp: "<strong>Superkompensation</strong>: Belastung → Ermüdung (Leistung sinkt) → Erholung → Leistungsniveau steigt über Ausgangsniveau. Das neue Training muss genau in diesem Hochpunkt ansetzen."
+    exp: "<strong>Weitere Prinzipien laut Skript</strong>: Individualisierung, Periodisierung, Prioritätsprinzip, Wechsel von Belastung und Erholung, Wechselwirkung von Belastungen."
   },
   {
     topic: "Trainingslehre",
-    q: "Was passiert, wenn man zu früh (vor der Superkompensation) wieder trainiert?",
+    q: "Welche sechs Belastungskomponenten nennt das PFA-Skript zur Trainingssteuerung?",
     a: [
-      "Noch bessere Anpassung",
-      "Gleiche Anpassung wie geplant",
-      "Übertraining / Leistungsstagnation oder -abfall",
-      "Schnellere Erholung"
-    ],
-    correct: 2,
-    exp: "Trainiert man zu früh (Körper noch nicht erholt), summiert sich Ermüdung → <strong>Übertraining</strong>. Trainiert man zu spät (nach dem Superkompensationsgipfel), verpascht man den Anpassungseffekt."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was besagt das Prinzip des trainingswirksamen Reizes?",
-    a: [
-      "Jede Belastung erzeugt eine Anpassung",
-      "Nur Reize über einer bestimmten Schwelle (Reizschwelle) lösen Anpassungen aus",
-      "Je mehr Schmerz, desto besser die Anpassung",
-      "Der Reiz muss täglich gesetzt werden"
+      "Gewicht, Tempo, Pause, Sätze, Wdh., Übungen",
+      "Reizintensität, Reizdauer, Reizumfang, Reizdichte, Trainingshäufigkeit, subjektives Belastungsempfinden (RPE/RIR/Borg)",
+      "Kraft, Ausdauer, Koordination, Schnelligkeit, Flexibilität, Balance",
+      "Warm-up, Hauptteil, Cool-down, Dehnen, Ernährung, Schlaf"
     ],
     correct: 1,
-    exp: "<strong>Reizschwelle</strong> (Arndt-Schulz-Gesetz): Zu schwache Reize → keine Wirkung. Mittelstarke Reize → Anpassung. Zu starke Reize → Schädigung. Der Reiz muss ausreichend stark sein."
+    exp: "<strong>6 Belastungskomponenten (Coburn et al. 2012)</strong>: Reizintensität, Reizdauer, Reizumfang, Reizdichte, Trainingshäufigkeit, subjektives Belastungsempfinden (RPE / sRPE / RIR / Borg-Skala)."
   },
   {
     topic: "Trainingslehre",
-    q: "Was bedeutet das Prinzip der progressiven Belastungssteigerung?",
+    q: "Was zeigen das Superkompensationsmodell und das Fitness-Fatigue-Modell?",
     a: [
-      "Immer gleich schwer trainieren",
-      "Die Belastung muss mit dem Anpassungsfortschritt regelmäßig gesteigert werden",
-      "Nur das Gewicht darf gesteigert werden, nicht Sätze/Wdh.",
-      "Jede Einheit muss schwerer sein als die vorherige"
+      "Dass mehr Training immer besser ist",
+      "Wie sich Leistung nach einer Belastung verhält: Ermüdung, Erholung, Anpassung (Superkompensation) oder Ermüdungsakkumulation (Fitness-Fatigue)",
+      "Dass Anfänger schneller Fortschritte machen als Fortgeschrittene",
+      "Dass Erholung unnötig ist"
     ],
     correct: 1,
-    exp: "<strong>Progressive Überladung</strong>: Wenn der Körper sich angepasst hat, muss der Reiz gesteigert werden (Gewicht, Volumen, Intensität, Frequenz) – sonst keine weiteren Anpassungen."
+    exp: "<strong>Superkompensation</strong>: Belastung → Ermüdung → Erholung → Leistung steigt über Ausgangsniveau. <strong>Fitness-Fatigue-Modell</strong> (Chiu et al. 2003 / Haff 2016): Trainingsreiz erzeugt gleichzeitig Fitness (+) und Fatigue (−). Die aktuelle Leistung = Fitness minus Fatigue."
   },
   {
     topic: "Trainingslehre",
-    q: "Was besagt das Prinzip der Kontinuität?",
+    q: "Was gilt laut PFA-Skript für Anfänger vs. Fortgeschrittene bei der Anpassungsreserve?",
     a: [
-      "Training muss täglich stattfinden",
-      "Anpassungen entstehen nur durch regelmäßiges, langfristiges Training – Unterbrechungen führen zu Rückschritten (Detraining)",
-      "Einmal pro Woche reicht immer",
-      "Pausen sind schädlich"
-    ],
-    correct: 1,
-    exp: "<strong>Kontinuität</strong>: Anpassungen sind reversibel. Ohne regelmäßigen Reiz baut der Körper Anpassungen ab (Detraining). Dauerhafter Fortschritt braucht langfristige Konsistenz."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was beschreibt das Prinzip der Individualität?",
-    a: [
-      "Alle Menschen reagieren gleich auf Training",
-      "Trainingspläne müssen auf die individuellen Voraussetzungen, Ziele und Reaktionen der Person angepasst werden",
-      "Nur Anfänger brauchen individuelle Pläne",
-      "Geschlecht ist der einzige individuelle Faktor"
-    ],
-    correct: 1,
-    exp: "<strong>Individualität</strong>: Alter, Geschlecht, Trainingserfahrung, Genetik, Gesundheitszustand – all das beeinflusst die Trainingsreaktion. Kein Plan passt für alle gleich."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was sind die vier Belastungsparameter, mit denen man Training steuert?",
-    a: [
-      "Gewicht, Tempo, Schmerz, Pause",
-      "Intensität, Umfang, Dichte und Dauer",
-      "Wiederholungen, Sätze, Übungen, Muskeln",
-      "Kraft, Ausdauer, Koordination, Schnelligkeit"
-    ],
-    correct: 1,
-    exp: "<strong>4 Belastungsparameter</strong>: Intensität (wie schwer), Umfang (Volumen – Gesamtarbeit), Dichte (Verhältnis Belastung:Pause), Dauer (Zeit der Einheit/des Reizes)."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was ist der Unterschied zwischen Makro-, Meso- und Mikrozyklus?",
-    a: [
-      "Nur Begriffe – meinen dasselbe",
-      "Makro = Jahresplan, Meso = Block (Wochen bis Monate), Mikro = einzelne Trainingswoche",
-      "Makro = eine Einheit, Meso = eine Woche, Mikro = ein Monat",
-      "Nur im Wettkampfsport relevant"
-    ],
-    correct: 1,
-    exp: "<strong>Zyklen der Periodisierung</strong>: Makrozyklus (Saison/Jahr), Mesozyklus (mehrere Wochen – ein Trainingsblock), Mikrozyklus (eine Woche). Jeder Zyklus hat eine spezifische Zielsetzung."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Welche Trainingsphasen gibt es in der klassischen Periodisierung?",
-    a: [
-      "Nur Aufbau- und Abbauphasen",
-      "Allgemeine Vorbereitungsphase, spezifische Vorbereitungsphase, Wettkampfphase, Übergangsphase (Regeneration)",
-      "Anfänger-, Fortgeschrittenen- und Expertenphase",
-      "Kraft-, Ausdauer- und Koordinationsphase"
-    ],
-    correct: 1,
-    exp: "<strong>Klassische Periodisierung</strong> (Matveyev): 1. Allgemeine Vorbereitung (Basis aufbauen), 2. Spezifische Vorbereitung (sportartspezifisch), 3. Wettkampfphase (Peak), 4. Übergangsphase (aktive Erholung)."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Warum ist Periodisierung auch für Fitnesstraining (nicht nur Wettkampfsport) sinnvoll?",
-    a: [
-      "Sie ist nur für Profis relevant",
-      "Sie ermöglicht gezielte Belastungssteuerung, verhindert Übertraining und ermöglicht langfristigen Fortschritt",
-      "Weil Behörden es vorschreiben",
-      "Damit man weniger trainieren muss"
-    ],
-    correct: 1,
-    exp: "<strong>Periodisierung im Fitness</strong>: Gezielt Phasen mit mehr Volumen (Hypertrophie), mehr Intensität (Kraft) oder Regeneration einzubauen verhindert Stagnation und Übertraining – auch ohne Wettkampfziel sinnvoll."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was sind motorische Grundeigenschaften? Welche fünf gibt es?",
-    a: [
-      "Kraft, Schnelligkeit, Ausdauer, Koordination, Flexibilität",
-      "Stärke, Tempo, Kondition, Gleichgewicht, Mobilität",
-      "Muskeln, Nerven, Knochen, Sehnen, Faszien",
-      "Hypertrophie, Definierung, Ausdauer, Kraft, Gewicht"
-    ],
-    correct: 0,
-    exp: "<strong>5 motorische Grundeigenschaften</strong>: Kraft, Schnelligkeit, Ausdauer, Koordination, Flexibilität (Beweglichkeit). Alle fünf sind trainierbar – Training immer auf das primäre Ziel ausrichten."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was bedeutet Detraining?",
-    a: [
-      "Gezieltes leichteres Training zur Regeneration",
-      "Der Rückgang von Trainingsanpassungen bei Unterbrechung des Trainings",
-      "Training mit weniger Gewicht als gewohnt",
-      "Das Abkühlen nach dem Training"
-    ],
-    correct: 1,
-    exp: "<strong>Detraining</strong>: Werden Trainingsreize weggelassen, bildet der Körper nicht mehr benötigte Anpassungen zurück. Kraft-Anpassungen bleiben länger als Ausdauer-Anpassungen. Kontinuität ist daher entscheidend."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was ist der Unterschied zwischen allgemeiner und spezifischer Ausdauer/Kraft?",
-    a: [
+      "Fortgeschrittene haben mehr Potenzial als Anfänger",
+      "Anfänger haben eine grosse Adaptationsreserve und reagieren schnell; Fortgeschrittene brauchen länger und spezifischere Reize",
       "Es gibt keinen Unterschied",
-      "Allgemein = unspezifische Grundfitness; spezifisch = auf eine bestimmte Sportart/Bewegung ausgerichtet",
-      "Allgemein = für Anfänger, spezifisch = für Profis",
-      "Allgemein = mehr Übungen; spezifisch = weniger Übungen"
+      "Anfänger sollten schwerer trainieren als Fortgeschrittene"
     ],
     correct: 1,
-    exp: "<strong>Allgemein vs. spezifisch</strong>: In der allgemeinen Vorbereitung wird die Grundfitness (Kraft, Ausdauer) breit aufgebaut. Spezifisches Training zielt auf die konkrete Sportart/Bewegung – z. B. Squat-Kraft für einen Läufer vs. allgemeine Beinkraft."
+    exp: "<strong>Adaptationsreserve</strong>: Anfänger haben viel Potenzial und reagieren stark auf fast jeden Reiz. Fortgeschrittene haben eine kleinere Reserve – das Training muss gezielter und spezifischer sein, um weitere Anpassungen auszulösen."
   },
   {
     topic: "Trainingslehre",
-    q: "Was sollte man laut Trainingslehre im Trainingsaufbau vermeiden?",
+    q: "Welche motorischen Fähigkeiten unterscheidet das PFA-Skript?",
     a: [
-      "Zu wenig Erholung, fehlende Progression, zu monotones Training ohne Variation",
-      "Mehr als 3 Sätze pro Übung",
-      "Training an zwei aufeinanderfolgenden Tagen",
-      "Übungen mit freien Gewichten"
-    ],
-    correct: 0,
-    exp: "<strong>Typische Fehler</strong>: 1) Zu wenig Erholung (Übertraining), 2) fehlende Progression (Stagnation), 3) zu eintöniges Training ohne Variation (Adaptationsplateau), 4) keine Individualisierung. Alle führen zu Stagnation oder Verletzung."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was ist Übertraining und wie erkennt man es?",
-    a: [
-      "Zu viel Muskelaufbau in kurzer Zeit",
-      "Anhaltender Leistungsabfall trotz ausreichender Erholung, Erschöpfung, Schlafstörungen, Motivationsverlust",
-      "Schmerzen direkt nach dem Training (DOMS)",
-      "Zu viele verschiedene Übungen im Plan"
+      "Nur konditionelle Fähigkeiten",
+      "Konditionelle Fähigkeiten und koordinative Fähigkeiten",
+      "Kraft, Ausdauer, Flexibilität",
+      "Aerobe und anaerobe Fähigkeiten"
     ],
     correct: 1,
-    exp: "<strong>Übertraining</strong>: Chronische Dysbalance zwischen Belastung und Erholung. Symptome: anhaltender Leistungsabfall, Erschöpfung, Schlafstörungen, erhöhte Verletzungsanfälligkeit, Motivationsverlust. Therapie: Trainingsreduktion, Erholung."
+    exp: "Das Skript (nach Weineck 2010) unterscheidet <strong>konditionelle Fähigkeiten</strong> (Kraft, Ausdauer, Schnelligkeit, Beweglichkeit) und <strong>koordinative Fähigkeiten</strong> (Gleichgewicht, Rhythmus, Reaktion, Orientierung, Differenzierung)."
   },
   {
     topic: "Trainingslehre",
-    q: "Was bedeutet das Prinzip der Variation?",
+    q: "Was sind laut PFA-Skript Einflussfaktoren auf die Kraftleistung?",
     a: [
-      "Jeden Tag etwas anderes tun, ohne Plan",
-      "Belastungsreize regelmäßig verändern (Übungen, Methoden, Intensitäten), um Anpassungsplateaus zu verhindern",
-      "Immer gleiche Übungen für maximale Anpassung",
-      "Variation ist nur für Fortgeschrittene relevant"
+      "Nur Muskelmasse",
+      "Intramuskuläre Koordination, intermuskuläre Koordination (Technik), Muskelquerschnitt, Energieversorgung, Laktattoleranz, Faserverteilung, Körperbau & Biomechanik",
+      "Ernährung und Schlaf",
+      "Alter und Geschlecht"
     ],
     correct: 1,
-    exp: "<strong>Prinzip der Variation</strong>: Der Körper gewöhnt sich an gleichbleibende Reize (Adaptationsplateau). Durch Variation von Übungen, Wiederholungsbereichen oder Methoden bleiben die Reize wirksam."
+    exp: "<strong>Einflussfaktoren Kraft (Skript)</strong>: Intramuskuläre Koordination, intermuskuläre Koordination (Technik), Muskelquerschnitt, Energieversorgung (Speicher), Laktattoleranz, Faserverteilung (Fast/Slow), Körperbau & Biomechanik."
   },
   {
     topic: "Trainingslehre",
-    q: "Wie lange dauert es in der Regel, bis erste sichtbare Anpassungen (Kraft/Muskeln) auftreten?",
+    q: "Welche Belastungskonfiguration gilt laut PFA-Skript für Maximalkrafttraining?",
     a: [
-      "1–3 Tage",
-      "Erst nach einem Jahr",
-      "Erste Kraftzuwächse nach 2–4 Wochen (neural); sichtbarer Muskelaufbau nach 6–12 Wochen",
-      "Nach genau 8 Wochen bei jedem Menschen"
-    ],
-    correct: 2,
-    exp: "<strong>Anpassungszeitraum</strong>: Erste Kraftzuwächse (2–4 Wochen) sind hauptsächlich <em>neural</em> (bessere Muskelaktivierung, Koordination) – kein echter Muskelaufbau. Strukturelle Hypertrophie setzt nach ~6–12 Wochen ein."
-  },
-  {
-    topic: "Trainingslehre",
-    q: "Was ist der Unterschied zwischen neuromuskulärer Anpassung und Hypertrophie?",
-    a: [
-      "Es gibt keinen Unterschied",
-      "Neural = bessere Muskelaktivierung/Koordination (kurzfristig); Hypertrophie = Vergrösserung der Muskelfasern (mittelfristig)",
-      "Hypertrophie passiert schneller als neuronale Anpassung",
-      "Neural = nur für Sportler; Hypertrophie = nur für Bodybuilder"
+      "60-70% 1RM, 6-20 Wdh., 2-5min Pause",
+      "90-100% 1RM, 1-5 Wdh., 3-6 Sätze, mehr als 5 Minuten Satzpause, 1-4 RIR",
+      "50-60% 1RM, mehr als 20 Wdh., 0,5-1min Pause",
+      "70-80% 1RM, 8-12 Wdh., 3-4 Sätze"
     ],
     correct: 1,
-    exp: "<strong>Zwei Phasen</strong>: 1) Neuronale Anpassung (Wochen 1–4): mehr Muskelfasern werden gleichzeitig aktiviert, Koordination verbessert sich. 2) Hypertrophie (ab Woche 6+): Muskelfaserdurchmesser nimmt zu (Myofibrillen-Hypertrophie)."
+    exp: "<strong>Maximalkraft (Wirth et al. 2012)</strong>: Intensität 90–100% 1RM, 1–5 Wdh./Satz, 3–6 Sätze/Übung, Satzpause >5 min, kontrolliert bis explosiv, 1–4 RIR. Anpassungen: Kraftmaximum +++, Muskelmasse +, Knochen ++."
   },
   {
     topic: "Trainingslehre",
-    q: "Was ist der praktische Nutzen der Periodisierung laut Trainer Andi?",
+    q: "Welche Belastungskonfiguration gilt laut PFA-Skript für Hypertrophietraining?",
     a: [
-      "Man muss alle Modelle auswendig lernen",
-      "Die Grundidee verstehen: Belastung steuern, Phasen planen, Überlastung vermeiden, langfristigen Fortschritt ermöglichen",
-      "Periodisierung gilt nur für Wettkampfsportler",
-      "Klassische Modelle werden heute 1:1 angewendet"
+      "90-100% 1RM, 1-5 Wdh., >5min Pause",
+      "60-70% (Anfänger) bis 70-90% (Fortgeschrittene) 1RM, 6-20 Wdh., Satzpause 2-5 min",
+      "50% 1RM, mehr als 40 Wdh., 30 Sek. Pause",
+      "100% 1RM, 1 Wdh., maximale Pause"
     ],
     correct: 1,
-    exp: "Laut Trainer Andi: <strong>Grundidee verstehen</strong> – nicht jedes Modell auswendig. Wichtig: Belastung steuern, Phasen sinnvoll planen, Überlastung vermeiden, langfristigen Fortschritt ermöglichen. Klassische Modelle werden heute nicht immer 1:1 angewendet."
+    exp: "<strong>Hypertrophie (Wirth et al. 2012)</strong>: 60–70% Anfänger / 70–90% Fortgeschrittene, 6–20 Wdh., Satzpause 2–5 min, mind. 8 Wochen, 0–3 RIR. Muskelmasse bildet die Grundlage für ein potenziell hohes Kraftmaximum."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Welche Belastungskonfiguration gilt laut PFA-Skript für Kraftausdauertraining?",
+    a: [
+      "90% 1RM, 3 Wdh., 5min Pause",
+      "Bis 60% 1RM, mehr als 20-40 Wdh., Satzpause 0,5-1 Minute",
+      "70-80% 1RM, 10-15 Wdh., 3min Pause",
+      "Kein Gewicht – nur Körpergewicht"
+    ],
+    correct: 1,
+    exp: "<strong>Kraftausdauer (Wirth et al. 2012)</strong>: Intensität bis 60% 1RM, >20–40 Wdh./Satz, 3–10 Sätze, Satzpause 0,5–1 min, kontrolliert, 0–4 RIR. Adaptationen: anaerob-laktazide Energiebereitstellung, Ausdauer."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "In welcher Reihenfolge werden die 10 Schritte der Trainingsplanung laut PFA-Skript (Haff & Haff) durchgeführt?",
+    a: [
+      "Zuerst Übungen, dann Ziele",
+      "1. Evaluation/Ziele, 2. Trainingshäufigkeit, 3. Übungsauswahl, 4. Reihenfolge/Organisationsform, 5. Intensität x Wdh., 6. Wdh. x Sätze, 7. Pausen, 8. Variationen, 9. Sequenzierung, 10. Progression",
+      "Zuerst Volumen, dann Intensität, dann Übungen",
+      "Erst Pausen festlegen, dann Übungen wählen"
+    ],
+    correct: 1,
+    exp: "<strong>10 Schritte Trainingsplanung (Haff & Haff in Coburn et al. 2012)</strong>: 1) Evaluation & Ziele, 2) Häufigkeit, 3) Übungsauswahl, 4) Reihenfolge & Organisationsform, 5) Last (Intensität x Wdh.), 6) Volumen (Wdh. x Sätze), 7) Pausenzeiten, 8) Variationen, 9) Sequenzierung, 10) Progression."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind laut PFA-Skript Vor- und Nachteile des Zirkeltrainings?",
+    a: [
+      "Vorteile: hohe Intensität je Übung; Nachteil: keine Zeitersparnis",
+      "Vorteil: Zeitersparnis, metabolisch und kardiovaskulär belastend; Nachteil: alles ein bisschen, nichts ordentlich – geringe Intensität je Übung",
+      "Keine Nachteile",
+      "Nur für Anfänger geeignet"
+    ],
+    correct: 1,
+    exp: "<strong>Zirkeltraining laut Skript</strong>: Vorteil – Zeitersparnis, metabolisch und subjektiv hoch belastend, positive Auswirkungen auf Herzkreislaufsystem. Nachteil – <em>alles ein bisschen, nichts ordentlich</em>; Intensität der einzelnen Übung ist gering."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was gilt laut PFA-Skript für Schnelligkeit als motorische Eigenschaft?",
+    a: [
+      "Schnelligkeit ist nur genetisch bedingt, nicht trainierbar",
+      "Schnelligkeit ist eine komplexe koordinativ-konditionelle Fähigkeit, die von Kraft und Nervensystem abhängt und trainierbar ist",
+      "Schnelligkeit hängt nur von der Muskelmasse ab",
+      "Schnelligkeit braucht kurze Pausen zwischen den Einheiten"
+    ],
+    correct: 1,
+    exp: "<strong>Schnelligkeit laut Skript</strong>: Eine komplexe koordinativ-konditionelle Fähigkeit – hängt von Kraft UND Koordination (Nervensystem) ab. Ist trainierbar! Spezifisches Schnelligkeitstraining braucht: maximalen Einsatz, gutes Warm-up, vollständige Regeneration. Faustregel: pro 10m Sprint mind. 1min Pause."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist laut PFA-Skript das wichtigste Grundprinzip beim Beweglichkeitstraining?",
+    a: [
+      "So viel dehnen wie möglich – maximale Beweglichkeit anstreben",
+      "Nicht maximal, sondern optimal ausbilden",
+      "Nur passiv-statisches Dehnen verwenden",
+      "Beweglichkeit vor jedem Training trainieren"
+    ],
+    correct: 1,
+    exp: "<strong>Wichtigstes Prinzip Beweglichkeit (Behm 2019)</strong>: <em>Nicht maximal, sondern optimal ausbilden!</em> Methoden: dynamisch-aktiv (Schwunggymnastik), passiv-statisches Dehnen, PNF-Stretching. Aktive Beweglichkeit = durch agonistische Muskeln; Passive = durch äußere Kräfte."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was ist PNF-Stretching laut PFA-Skript?",
+    a: [
+      "Passives Dehnen mit Partner",
+      "Propriozeptive Neuromuskuläre Fazilitation – komplexere Methode des Beweglichkeitstrainings",
+      "Progressives Netzwerk Flexibilitätstraining",
+      "Eine Form des dynamischen Dehnens"
+    ],
+    correct: 1,
+    exp: "<strong>PNF = Propriozeptive Neuromuskuläre Fazilitation</strong>: komplexere Methode des Beweglichkeitstrainings (Behm 2019). Nutzt neuromuskuläre Reflexmechanismen um eine größere Bewegungsreichweite zu erreichen."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Welche Faktoren beeinflussen laut PFA-Skript die Ausdauerleistung?",
+    a: [
+      "Nur VO2max",
+      "Maximale Sauerstoffaufnahme (VO2max), Herzfrequenzreserve, Herzminutenvolumen, Blutmenge & Hämatokrit, Energiespeicher, enzymatische Prozesse, Mitochondrien-Dichte, Kapillarisierung, Technik",
+      "Nur Körpergewicht und Lauftechnik",
+      "Herzfrequenz und Blutdruck"
+    ],
+    correct: 1,
+    exp: "<strong>Ausdauerfaktoren laut Skript</strong>: VO2max, Herzfrequenzreserve, Herzminutenvolumen, Blutmenge & Hämatokrit, Energiespeicher (Glykogen, Triglyceride), enzymatische Prozesse, Mitochondrien-Dichte & Kapillarisierung, effiziente Technik."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Wie lautet die Karvonen-Formel zur Ausdauersteuerung laut PFA-Skript?",
+    a: [
+      "Trainingspuls = Maximalpuls × Intensität",
+      "Trainingspuls = Ruhepuls + (Maximalpuls - Ruhepuls) × Intensität",
+      "Trainingspuls = 220 - Lebensalter",
+      "Trainingspuls = Maximalpuls - Lebensalter"
+    ],
+    correct: 1,
+    exp: "<strong>Karvonen-Formel</strong>: TP = RP + (MP - RP) × Intensität. Berücksichtigt die Herzfrequenzreserve (MP - RP). Maximalpuls-Schätzung: 220 - Lebensalter ODER genauer: 207 - (0,7 × Alter). Besser: Testen!"
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Welche Ausdauermethoden nennt das PFA-Skript (nach Bompa & Haff 2009)?",
+    a: [
+      "Nur Dauerlauf",
+      "Aerobe Dauermethoden, Tempomethode, aerobes Intervall, anaerobes Intervall, Fahrtspiel (Fartlek), Wiederholungs- und Wettkampfmethoden",
+      "Nur Intervall und Dauerlauf",
+      "HIIT und Steady-State"
+    ],
+    correct: 1,
+    exp: "<strong>Ausdauermethoden (Bompa & Haff 2009)</strong>: Dauermethoden (Active Rest, Dauerlauf, Tempo), Intervallmethoden (aerob, anaerob), Fartlek (Fahrtspiel), Wiederholungsmethoden (vollständige Pause), Wettkampfmethoden. Steuerung nach Trainingszustand, Ressourcen, Zielsetzung."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was gilt für Intervallmethoden mit dem ATP-PCr-System laut PFA-Skript?",
+    a: [
+      "Lange Pausen nicht nötig",
+      "Belastung 2-10 Sekunden, Verhältnis Belastung:Pause 1:12 bis 1:20, Intensität 90-100% Pmax",
+      "30-60 Sek. Belastung, 1:3 Verhältnis",
+      "Mehr als 3 Minuten Belastung"
+    ],
+    correct: 1,
+    exp: "<strong>ATP-PCr Intervall (Bompa & Haff 2009)</strong>: Belastung 2–10 Sek., Pause 60–200 Sek., Verhältnis 1:12–1:20, Intensität 90–100% Pmax. Vollständige Erholung des Phosphatsystems nötig – daher sehr lange Pausen."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind laut PFA-Skript MET-Werte und wie hoch ist z.B. Krafttraining (hart)?",
+    a: [
+      "MET = Maximale Energietoleranz; Krafttraining hart = 10 MET",
+      "1 MET = Energieverbrauch in Ruhe (ca. 1 kcal/kg/h); Krafttraining hart = 6,0 MET",
+      "MET = Muskeleinsatztest; kein Wert fuer Krafttraining",
+      "1 MET = 100 kcal; Krafttraining = 5 MET"
+    ],
+    correct: 1,
+    exp: "<strong>MET = Metabolisches Äquivalent</strong>: 1 MET = Energieverbrauch in Ruhe (~1 kcal/kg/h). Werte laut Skript: Ruhe 1,0 – Gehen 2,0–6,3 – Krafttraining leicht 3,0 – Krafttraining hart 6,0 – Zirkeltraining 8,0 – Laufen 10km/h 10,0 MET."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind laut PFA-Skript die vier Gründe/Ziele für Training?",
+    a: [
+      "Kraft, Ausdauer, Gewichtsabnahme, Spass",
+      "Prävention, Rehabilitation, Leistungssteigerung, Körperformung – sowie psychische Effekte",
+      "Wettkampf, Gesundheit, Ästhetik, Regeneration",
+      "Muskelaufbau, Fettverlust, Flexibilität, Gleichgewicht"
+    ],
+    correct: 1,
+    exp: "<strong>Trainingsziele laut Skript</strong>: 1) Präventive Ziele, 2) Rehabilitative Ziele, 3) Leistungssteigerung, 4) Körperformung – und: psychische Effekte. Außerdem nennt das Skript das Zitat: Training verfolgt Ziele des Sports, Prävention und Rehabilitation."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sagt das PFA-Skript über den Trainingsplanungsprozess – vom Groben zum Feinen?",
+    a: [
+      "Man startet mit einzelnen Uebungen und plant dann den Jahresplan",
+      "Zuerst Assessment & SMART-Ziele, dann Jahresplan, dann Mesozyklus, dann Mikrozyklus/Trainingseinheit",
+      "Man braucht keinen strukturierten Prozess",
+      "Erst Ernaehrungsplan, dann Trainingsplan"
+    ],
+    correct: 1,
+    exp: "<strong>Planungsprozess (Skript)</strong>: 1) Assessment (Person & Umwelt), 2) SMART-Ziele + Milestones, 3) Messmethoden festlegen, 4) vom Groben (Jahresplan) zum Feinen (Trainingseinheit) planen. SMART = Spezifisch, Messbar, Attraktiv, Realistisch, Terminisiert."
+  },
+  {
+    topic: "Trainingslehre",
+    q: "Was sind laut PFA-Skript die Abschlusstipps fuer Personal Trainer?",
+    a: [
+      "Immer den gleichen Plan verwenden",
+      "Trainingsprinzipien beachten, Erfolge sichtbar machen (SMART), Betreuung ueber das Training hinaus (Alltag, Netzwerk), trotz Planung flexibel und kundenorientiert bleiben",
+      "Nur auf Ernaehrung achten",
+      "So viel wie moeglich trainieren lassen"
+    ],
+    correct: 1,
+    exp: "<strong>4 Abschlusstipps (Skript)</strong>: 1) Trainingsprinzipien beachten (spezifisch, Wechselwirkungen beachten), 2) Erfolge sichtbar machen (SMART, geeignetes Tool), 3) Betreuung ueber das Training hinaus (Alltagsbewegung, Netzwerk), 4) Flexibel und kundenorientiert bleiben."
   }
 ];
 
